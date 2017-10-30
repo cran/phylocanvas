@@ -20,4 +20,3 @@ collapse the node.
 \seealso{
 \url{http://phylocanvas.org/docs/features/#collapse-branches}
 }
-

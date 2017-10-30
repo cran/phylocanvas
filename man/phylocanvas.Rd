@@ -43,4 +43,3 @@ phylocanvas(tree, treetype = "rectangular", nodestyles = NULL,
 \description{
 An html widget wrapper of the \href{http://phylocanvas.org}{phylocanvas.js} JS library.
 }
-

@@ -18,4 +18,3 @@ highlight the node.
 \seealso{
 \url{http://phylocanvas.org/docs/features/#highlight-leaves}
 }
-

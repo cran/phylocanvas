@@ -46,4 +46,3 @@ the given styles to that node.
 \seealso{
 \url{http://phylocanvas.org/docs/features/#style-branches-individually}
 }
-

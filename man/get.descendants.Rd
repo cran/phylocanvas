@@ -25,4 +25,3 @@ node <- phylobase::MRCA(tree, c("Cerylidae", "Upupidae"))
 get.descendants(tree, node)
 
 }
-

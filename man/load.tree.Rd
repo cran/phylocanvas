@@ -29,4 +29,3 @@ generating custom displays.
 birdfile <- system.file("treedata/birdfamilies.tree", package="phylocanvas")
 tree <- load.tree(birdfile)
 }
-

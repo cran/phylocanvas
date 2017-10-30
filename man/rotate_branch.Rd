@@ -18,4 +18,3 @@ an internal node, rotate the branch defined by the node
 \seealso{
 \url{http://phylocanvas.org/docs/features/#rotate-branches}
 }
-

@@ -1,50 +1,54 @@
 ## ----setup, include=FALSE------------------------------------------------
-knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+knitr::opts_chunk$set(echo = TRUE)
 suppressMessages(library(magrittr))
 
-## ----cars----------------------------------------------------------------
-#  library(ape)
-#  library(phylobase)
-#  library(phylocanvas)
-#  
-#  birdfile <- system.file("treedata/birdfamilies.tree", package="phylocanvas")
-#  birdfamilies <- load.tree(birdfile)
-#  tree <- load.tree(birdfile)
-#  tree <- birdfamilies
-#  phy1 <- phylocanvas(tree)
-#  phy1
+## ----warning=FALSE-------------------------------------------------------
+library(magrittr)
+library(ape)
+library(phylocanvas)
 
-## ------------------------------------------------------------------------
-#  
-#  # get MRCA
-#  n1 <- MRCA(tree, c("Cerylidae", "Upupidae"))
-#  n1 <- names(n1)
-#  
-#  # highlight all submembers of the MRCA
-#  phylocanvas(tree, width = 700) %>% select_branch(nodeid=n1, cascade=T)
-#  
+data("bird.families")
+phylocanvas(bird.families, treetype = "radial", 
+            width = 700, textsize = 10, nodesize = 10)
 
-## ------------------------------------------------------------------------
-#  phylocanvas(tree, width = 700, treetype = "radial") %>%
-#    select_branch(nodeid=n1, cascade=T)
-#  
+## ----warning=FALSE-------------------------------------------------------
 
-## ------------------------------------------------------------------------
-#  phycanv     <- phylocanvas(tree, width = 700, treetype = "radial")
-#  nodenames   <- get.descendants(tree, n1)
-#  clade2names <- get.descendants(tree, names(MRCA(tree, c("Pteroclidae", "Jacanidae"))))
-#  clade3names <- get.descendants(tree, names(MRCA(tree, c("Irenidae", "Paramythiidae"))))
-#  
-#  for (nodename in nodenames) {
-#    phycanv <- style_node(phycanv, nodeid = nodename, fillcolor="green")
-#  }
-#  for (nodename in clade2names) {
-#    phycanv <- style_node(phycanv, nodeid = nodename, fillcolor="red")
-#  }
-#  for (nodename in clade3names) {
-#    phycanv <- style_node(phycanv, nodeid = nodename, fillcolor="blue")
-#  }
-#  
-#  phycanv
-#  
+# add internal nodenames
+birds  <- makeNodeLabel(bird.families)
+
+# convert to phylo4 which has a few nice convenicnece methods including the
+# ability to get names with nodes.
+birds <- phylobase::phylo4(birds)
+
+# get MRCA
+node  <- phylobase::MRCA(birds,c("Cerylidae", "Upupidae"))
+
+# get the node name
+nodename <- names(node)
+
+# highlight all submembers of the MRCA
+phylocanvas(birds, width = 700, textsize = 10, nodesize = 10) %>%
+  select_branch(nodeid=nodename, cascade=T)
+
+## ---- warning=FALSE------------------------------------------------------
+phylocanvas(birds, width = 700, textsize = 10, nodesize = 10, treetype = "radial") %>% 
+  select_branch(nodeid=nodename, cascade=T)
+
+
+## ----warning=FALSE-------------------------------------------------------
+phycanv     <- phylocanvas(birds, width = 700, textsize = 10, nodesize = 10, treetype = "radial") 
+nodenames   <- get.descendants(birds, nodename)
+clade2names <- get.descendants(birds, phylobase::MRCA(birds, c("Pteroclidae", "Jacanidae")))
+
+for (nodename in nodenames) {
+  phycanv <- style_node(phycanv, nodeid = nodename, fillcolor="green")
+}
+for (nodename in clade2names) {
+  phycanv <- style_node(phycanv, nodeid = nodename, fillcolor="red")
+}
+
+
+phycanv
+
+
 

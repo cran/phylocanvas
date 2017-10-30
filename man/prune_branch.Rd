@@ -18,4 +18,3 @@ an internal node, prune the branch.
 \seealso{
 \url{http://phylocanvas.org/docs/features/#prune-branches}
 }
-

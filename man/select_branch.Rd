@@ -20,4 +20,3 @@ an internal node, select the branch defined by the node
 \seealso{
 \url{http://phylocanvas.org/docs/features/#select-branches}
 }
-
